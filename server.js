@@ -12,10 +12,12 @@ const { spawn, execFile } = require('child_process');
 const { createCanvas, GlobalFonts } = require('@napi-rs/canvas');
 const { W, H, KIT, prepare, renderFrame } = require('./engine');
 const { buildAudio, FX_LIST } = require('./audio');
+const { falar, VOZES } = require('./voz');
 
 const PORT = 3000, FPS = 30;
 const DIR = path.join(__dirname, 'arquivos');
 fs.mkdirSync(DIR, { recursive: true });
+const CACHE = path.join(DIR, '.cache-voz');
 
 const fb = path.join(__dirname, 'node_modules', '@fontsource');
 GlobalFonts.registerFromPath(path.join(fb,'archivo-black/files/archivo-black-latin-400-normal.woff2'),'Archivo Black');
@@ -30,18 +32,28 @@ const probe = f => new Promise(res => execFile('ffprobe',['-v','error','-show_en
 async function render(ep, id){
   const work = fs.mkdtempSync(path.join(DIR, '.tmp-'));
   try {
-    // 1. narração por cena (opcional): voz_url ou voz_base64
+    // 1. narração por cena: voz_url / voz_base64 prontos, ou gerada aqui a partir do texto
     const vozes = [], vozDur = {};
-    for (let i=0;i<ep.cenas.length;i++){
+    const narrador = ep.narrador || 'augusto';
+    const total = ep.cenas.length;
+    for (let i=0;i<total;i++){
       const c = ep.cenas[i];
-      if (!c.voz_url && !c.voz_base64) continue;
+      jobs.get(id).etapa = `voz ${i+1}/${total}`;
       const f = path.join(work, `voz${i}.mp3`);
-      if (c.voz_base64) fs.writeFileSync(f, Buffer.from(String(c.voz_base64).replace(/^data:.*?;base64,/,''), 'base64'));
-      else { const r = await fetch(c.voz_url); if (!r.ok) throw new Error(`Cena ${i+1}: não consegui baixar voz_url (${r.status})`); fs.writeFileSync(f, Buffer.from(await r.arrayBuffer())); }
+      if (c.voz_base64){ fs.writeFileSync(f, Buffer.from(String(c.voz_base64).replace(/^data:.*?;base64,/,''), 'base64')); delete c.voz_base64; }
+      else if (c.voz_url){ const r = await fetch(c.voz_url); if (!r.ok) throw new Error(`Cena ${i+1}: não consegui baixar voz_url (${r.status})`); fs.writeFileSync(f, Buffer.from(await r.arrayBuffer())); }
+      else {
+        if (ep.voz === false || c.voz === false) continue;
+        let fala = c.fala ?? c.texto;
+        if (c.tipo === 'voto' && !c.fala){ const op = c.opcoes || ['DEVOLVE','SOME']; fala = `${c.pergunta || 'E agora?'} Comenta ${op[0].toLowerCase()} ou ${op[1].toLowerCase()}.`; }
+        if (!fala) continue;
+        const quem = c.voz || (c.falante ? (ep.vozes_personagens?.[c.falante] || 'alex') : narrador);
+        fs.copyFileSync(await falar(quem, fala, CACHE, { emocao: c.emocao }, m => (jobs.get(id).avisos ||= []).push(m)), f);
+      }
       vozDur[i] = await probe(f);
       vozes.push({ i, f });
-      delete c.voz_base64;
     }
+    jobs.get(id).etapa = 'desenhando';
     // 2. linha do tempo + trilha
     const tl = prepare(ep, vozDur);
     const wav = path.join(work, 'trilha.wav');
@@ -88,7 +100,7 @@ http.createServer(async (req, res) => {
   const u = new URL(req.url, 'http://x');
   try {
     if (req.method === 'GET' && u.pathname === '/health') return send(res,200,{ ok:true, fila:[...jobs.values()].filter(j => j.status !== 'pronto' && j.status !== 'erro').length });
-    if (req.method === 'GET' && u.pathname === '/kit') return send(res,200,{ cenas:Object.keys(KIT), sons:FX_LIST, cores_destaque:['amarelo','verde','vermelho','azul'] });
+    if (req.method === 'GET' && u.pathname === '/kit') return send(res,200,{ cenas:Object.keys(KIT), sons:FX_LIST, cores_destaque:['amarelo','verde','vermelho','azul'], vozes:Object.keys(VOZES) });
     if (req.method === 'GET' && u.pathname.startsWith('/status/')){
       const j = jobs.get(u.pathname.split('/')[2]); if (!j) return send(res,404,{ erro:'id não encontrado' });
       return send(res,200,j);
@@ -117,8 +129,9 @@ http.createServer(async (req, res) => {
       const url = `${base(req)}/arquivos/${id}.mp4`;
       const p = queue = queue.then(async () => {
         job.status = 'renderizando';
-        try { Object.assign(job, await render(ep, id), { status:'pronto', progresso:100, url }); }
+        try { Object.assign(job, await render(ep, id), { status:'pronto', progresso:100, url, etapa:'pronto' }); }
         catch(e){ job.status = 'erro'; job.erro = e.message; }
+        if (ep.avisar_url) fetch(ep.avisar_url, { method:'POST', headers:{ 'content-type':'application/json' }, body: JSON.stringify(job) }).catch(() => {});
       });
       if (u.searchParams.get('esperar')){ await p; return send(res, job.status === 'pronto' ? 200 : 500, job); }
       return send(res,202,job);
