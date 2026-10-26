@@ -21,7 +21,7 @@ Recomendado: em **Montagens (Mounts)**, crie um volume em `/app/arquivos` para o
 | `GET /arquivos/ID.mp4` | O vídeo (link público, serve para postar no Instagram) |
 | `GET /kit` | Lista os tipos de cena e de som que existem |
 
-No n8n, use um nó HTTP Request com timeout de 10 minutos no modo `esperar=1`. Um episódio de 48 s leva cerca de 1 minuto.
+No n8n, use um nó HTTP Request com timeout de 10 minutos no modo `esperar=1`. Um episódio de 37 s leva cerca de 2 minutos.
 
 ## Formato do episódio
 

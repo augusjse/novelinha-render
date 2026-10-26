@@ -2,15 +2,217 @@
   "slug": "manobrista-ep01",
   "titulo": "O Manobrista · Ep 1",
   "cenas": [
-    { "tipo": "garagem_porta_malas", "abre": "aberto", "dur": 4, "texto": "Você acabou de abrir o porta-malas errado.", "destaques": { "porta-malas": "amarelo", "errado": "vermelho" }, "zoom": [1, 1.14], "tremor": 0.6, "sons": [{ "em": 0, "fx": "hit" }] },
-    { "tipo": "garagem_personagem", "personagem": "manobrista", "item": "chave", "relogio": "22:14", "local": "Estacionamento P2 · Hotel Aurora", "dur": 4.5, "texto": "22h14. Você é manobrista do Hotel Aurora.", "destaques": { "manobrista": "amarelo" } },
-    { "tipo": "garagem_fuga", "foge": "cliente", "fica": "manobrista", "dur": 4.6, "texto": "Um cliente jogou a chave do SUV preto na sua mão e saiu correndo.", "destaques": { "chave": "amarelo", "correndo": "vermelho" }, "sons": [{ "em": 0.8, "fx": "keys" }, { "em": 1.15, "fx": "steps" }] },
-    { "tipo": "garagem_porta_malas", "abre": "abrindo", "abre_em": 1.4, "dur": 4.2, "texto": "Você foi estacionar. E o porta-malas abriu sozinho.", "destaques": { "sozinho": "amarelo" }, "sons": [{ "em": 1.4, "fx": "clunk" }] },
-    { "tipo": "dinheiro", "dinheiro": 300000, "dinheiro_em": 1.4, "dinheiro_dur": 2.2, "dur": 5, "texto": "Dentro, uma mochila. R$ 300 mil em notas de cem.", "destaques": { "r$": "verde", "300": "verde", "mil": "verde" }, "sons": [{ "em": 1.4, "fx": "count" }] },
-    { "tipo": "celular_tocando", "dur": 4, "texto": "Aí um celular começa a tocar dentro da mochila.", "destaques": { "celular": "amarelo" }, "sons": [{ "em": 0.1, "fx": "ring" }, { "em": 1.9, "fx": "ring" }] },
-    { "tipo": "celular_chamada", "camera_num": 4, "falante": "Voz no telefone", "dur": 5.6, "texto": "Você tem 10 minutos pra devolver tudo. Eu tô te vendo pela câmera 4.", "destaques": { "10": "vermelho", "minutos": "vermelho", "câmera": "vermelho", "4": "vermelho" }, "estrelas": 1, "estrelas_em": 3.5, "sons": [{ "em": 0, "fx": "pickup" }, { "em": 3.5, "fx": "star" }] },
-    { "tipo": "fachada_policia", "letreiro": "Hotel Aurora", "dur": 4.6, "texto": "Lá fora, duas viaturas param na porta do hotel.", "destaques": { "viaturas": "vermelho" }, "estrelas": 3, "estrelas_em": 1.3, "sons": [{ "em": 0.2, "fx": "siren" }, { "em": 1.3, "fx": "star" }] },
-    { "tipo": "garagem_personagem", "personagem": "manobrista", "humor": "assustado", "mochila": true, "luz_policia": true, "carro": false, "zoom": [1, 1.1], "dur": 5.6, "texto": "Se devolver, a polícia te vê com a mochila. Se sumir, o dono te encontra.", "destaques": { "devolver": "azul", "sumir": "vermelho" }, "sons": [{ "em": 0.2, "fx": "heart" }, { "em": 1.1, "fx": "heart" }, { "em": 2, "fx": "heart" }, { "em": 2.9, "fx": "heart" }, { "em": 3.8, "fx": "heart" }, { "em": 4.7, "fx": "heart" }] },
-    { "tipo": "voto", "opcoes": ["DEVOLVE", "SOME"], "proximo": "Episódio 2 amanhã, às 20h", "dur": 6.6, "sons": [{ "em": 0, "fx": "stinger" }] }
+    {
+      "tipo": "garagem_porta_malas",
+      "abre": "aberto",
+      "dur": 2.6,
+      "texto": "Você acabou de abrir o porta-malas errado.",
+      "destaques": {
+        "porta-malas": "amarelo",
+        "errado": "vermelho"
+      },
+      "zoom": [
+        1,
+        1.14
+      ],
+      "tremor": 0.6,
+      "sons": [
+        {
+          "em": 0.0,
+          "fx": "hit"
+        }
+      ]
+    },
+    {
+      "tipo": "garagem_personagem",
+      "personagem": "manobrista",
+      "item": "chave",
+      "relogio": "22:14",
+      "local": "Estacionamento P2 · Hotel Aurora",
+      "dur": 3.2,
+      "texto": "22h14. Você é manobrista do Hotel Aurora.",
+      "destaques": {
+        "manobrista": "amarelo"
+      }
+    },
+    {
+      "tipo": "garagem_fuga",
+      "foge": "cliente",
+      "fica": "manobrista",
+      "dur": 3.6,
+      "texto": "Um cliente jogou a chave do SUV preto na sua mão e saiu correndo.",
+      "destaques": {
+        "chave": "amarelo",
+        "correndo": "vermelho"
+      },
+      "sons": [
+        {
+          "em": 0.63,
+          "fx": "keys"
+        },
+        {
+          "em": 0.9,
+          "fx": "steps"
+        }
+      ]
+    },
+    {
+      "tipo": "garagem_porta_malas",
+      "abre": "abrindo",
+      "abre_em": 1.0,
+      "dur": 3.0,
+      "texto": "Você foi estacionar. E o porta-malas abriu sozinho.",
+      "destaques": {
+        "sozinho": "amarelo"
+      },
+      "sons": [
+        {
+          "em": 1.0,
+          "fx": "clunk"
+        }
+      ]
+    },
+    {
+      "tipo": "dinheiro",
+      "dinheiro": 300000,
+      "dinheiro_em": 1.06,
+      "dinheiro_dur": 1.67,
+      "dur": 3.8,
+      "texto": "Dentro, uma mochila. R$ 300 mil em notas de cem.",
+      "destaques": {
+        "r$": "verde",
+        "300": "verde",
+        "mil": "verde"
+      },
+      "sons": [
+        {
+          "em": 1.06,
+          "fx": "count"
+        }
+      ]
+    },
+    {
+      "tipo": "celular_tocando",
+      "dur": 2.8,
+      "texto": "Aí um celular começa a tocar dentro da mochila.",
+      "destaques": {
+        "celular": "amarelo"
+      },
+      "sons": [
+        {
+          "em": 0.07,
+          "fx": "ring"
+        },
+        {
+          "em": 1.33,
+          "fx": "ring"
+        }
+      ]
+    },
+    {
+      "tipo": "celular_chamada",
+      "camera_num": 4,
+      "falante": "Voz no telefone",
+      "dur": 4.4,
+      "texto": "Você tem 10 minutos pra devolver tudo. Eu tô te vendo pela câmera 4.",
+      "destaques": {
+        "10": "vermelho",
+        "minutos": "vermelho",
+        "câmera": "vermelho",
+        "4": "vermelho"
+      },
+      "estrelas": 1,
+      "estrelas_em": 2.75,
+      "sons": [
+        {
+          "em": 0.0,
+          "fx": "pickup"
+        },
+        {
+          "em": 2.75,
+          "fx": "star"
+        }
+      ]
+    },
+    {
+      "tipo": "fachada_policia",
+      "letreiro": "Hotel Aurora",
+      "dur": 3.4,
+      "texto": "Lá fora, duas viaturas param na porta do hotel.",
+      "destaques": {
+        "viaturas": "vermelho"
+      },
+      "estrelas": 3,
+      "estrelas_em": 0.96,
+      "sons": [
+        {
+          "em": 0.15,
+          "fx": "siren"
+        },
+        {
+          "em": 0.96,
+          "fx": "star"
+        }
+      ]
+    },
+    {
+      "tipo": "garagem_personagem",
+      "personagem": "manobrista",
+      "humor": "assustado",
+      "mochila": true,
+      "luz_policia": true,
+      "carro": false,
+      "zoom": [
+        1,
+        1.1
+      ],
+      "dur": 4.4,
+      "texto": "Se devolver, a polícia te vê com a mochila. Se sumir, o dono te encontra.",
+      "destaques": {
+        "devolver": "azul",
+        "sumir": "vermelho"
+      },
+      "sons": [
+        {
+          "em": 0.16,
+          "fx": "heart"
+        },
+        {
+          "em": 0.86,
+          "fx": "heart"
+        },
+        {
+          "em": 1.57,
+          "fx": "heart"
+        },
+        {
+          "em": 2.28,
+          "fx": "heart"
+        },
+        {
+          "em": 2.99,
+          "fx": "heart"
+        },
+        {
+          "em": 3.69,
+          "fx": "heart"
+        }
+      ]
+    },
+    {
+      "tipo": "voto",
+      "opcoes": [
+        "DEVOLVE",
+        "SOME"
+      ],
+      "proximo": "Episódio 2 amanhã, às 20h",
+      "dur": 5.6,
+      "sons": [
+        {
+          "em": 0.0,
+          "fx": "stinger"
+        }
+      ]
+    }
   ]
 }
