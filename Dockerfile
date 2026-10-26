@@ -5,6 +5,6 @@ RUN apt-get update \
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci --omit=dev
-COPY engine.js audio.js voz.js server.js exemplo-ep01.json ./
+COPY engine.js kit-noite.js audio.js voz.js server.js exemplo-ep01.json apagao-ep01.json ./
 EXPOSE 3000
 CMD ["node", "server.js"]

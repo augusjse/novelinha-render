@@ -1,0 +1,603 @@
+{
+ "slug": "apagao-ep01",
+ "titulo": "Apagão · Ep 1",
+ "narrador": "alex",
+ "placar": false,
+ "chuva": true,
+ "cenas": [
+  {
+   "tipo": "predio_noite",
+   "texto": "Às 21h14, o temporal derruba a luz do bairro inteiro.",
+   "fala": "Às nove e catorze da noite, o temporal derruba a luz do bairro inteiro.",
+   "luz": "apagando",
+   "apaga_em": 1.6,
+   "relampago_em": 1.5,
+   "hora": "21:14",
+   "destaques": {
+    "luz": "amarelo"
+   },
+   "sons": [
+    {
+     "em": 1.5,
+     "fx": "trovao"
+    }
+   ],
+   "zoom": [
+    1.05,
+    1
+   ],
+   "dur": 4.1
+  },
+  {
+   "tipo": "celular_grupo",
+   "texto": "Mas, no grupo do condomínio, ninguém estranha. Culpa da chuva.",
+   "hora_tela": "21:16",
+   "bateria": 81,
+   "mensagens": [
+    {
+     "de": "Marcos 302",
+     "texto": "Caiu aí também?"
+    },
+    {
+     "de": "Sônia 801",
+     "texto": "Tudo apagado aqui"
+    },
+    {
+     "de": "Síndico",
+     "texto": "É a chuva, pessoal. Já volta."
+    }
+   ],
+   "destaques": {
+    "chuva": "azul"
+   },
+   "dur": 4.1
+  },
+  {
+   "tipo": "quarto_escuro",
+   "texto": "Então você vai dormir.",
+   "celular": false,
+   "dur": 2.2
+  },
+  {
+   "tipo": "celular_alerta",
+   "texto": "Mas, às 3h47, todos os celulares do prédio gritam ao mesmo tempo.",
+   "fala": "Mas, às três e quarenta e sete, todos os celulares do prédio gritam ao mesmo tempo.",
+   "hora": "03:47",
+   "hora_tela": "03:47",
+   "bateria": 64,
+   "alerta_texto": "Permaneça em casa. Tranque portas e janelas. Não abra para desconhecidos.",
+   "destaques": {
+    "gritam": "vermelho"
+   },
+   "sons": [
+    {
+     "em": 0,
+     "fx": "alerta"
+    }
+   ],
+   "dur": 4.8
+  },
+  {
+   "tipo": "celular_alerta",
+   "texto": "“Defesa Civil. Permaneça em casa. Tranque portas e janelas. Não abra para desconhecidos.”",
+   "falante": "Alerta",
+   "voz": "dora",
+   "hora_tela": "03:47",
+   "bateria": 64,
+   "alerta_texto": "Permaneça em casa. Tranque portas e janelas. Não abra para desconhecidos.",
+   "destaques": {
+    "desconhecidos.”": "vermelho"
+   },
+   "dur": 5.2
+  },
+  {
+   "tipo": "texto_tela",
+   "texto": "Não é sobre a chuva.",
+   "chuva": true,
+   "destaques": {
+    "não": "vermelho"
+   },
+   "sons": [
+    {
+     "em": 0,
+     "fx": "hit"
+    }
+   ],
+   "dur": 2.3
+  },
+  {
+   "tipo": "janela",
+   "texto": "Então você vai até a janela para entender.",
+   "breu": true,
+   "dur": 3.4
+  },
+  {
+   "tipo": "janela",
+   "texto": "Nove andares abaixo, um homem atravessa a avenida correndo, descalço, olhando para trás.",
+   "corredores": [
+    {
+     "em": 0.3,
+     "dur": 5,
+     "olha": true
+    }
+   ],
+   "destaques": {
+    "correndo,": "amarelo"
+   },
+   "zoom": [
+    1,
+    1.08
+   ],
+   "dur": 5.2
+  },
+  {
+   "tipo": "janela",
+   "texto": "Mas, atrás dele, vêm mais três, correndo do mesmo jeito. Sem gritar. Sem ofegar.",
+   "corredores": [
+    {
+     "em": 0,
+     "dur": 2.2,
+     "olha": true
+    },
+    {
+     "em": 0.5,
+     "dur": 3.4,
+     "y": 1300
+    },
+    {
+     "em": 0.75,
+     "dur": 3.4,
+     "y": 1280
+    },
+    {
+     "em": 1.0,
+     "dur": 3.4,
+     "y": 1320
+    }
+   ],
+   "destaques": {
+    "três,": "vermelho"
+   },
+   "zoom": [
+    1.05,
+    1.12
+   ],
+   "dur": 5.6
+  },
+  {
+   "tipo": "janela",
+   "texto": "O homem vira a esquina. Os três também.",
+   "corredores": [
+    {
+     "em": -1.2,
+     "dur": 2.4
+    },
+    {
+     "em": -0.6,
+     "dur": 2.4,
+     "y": 1300
+    },
+    {
+     "em": -0.4,
+     "dur": 2.4,
+     "y": 1280
+    },
+    {
+     "em": -0.2,
+     "dur": 2.4,
+     "y": 1320
+    }
+   ],
+   "dur": 3.4
+  },
+  {
+   "tipo": "texto_tela",
+   "texto": "E o grito para.",
+   "chuva": true,
+   "sons": [
+    {
+     "em": 0,
+     "fx": "hit"
+    }
+   ],
+   "dur": 2.2
+  },
+  {
+   "tipo": "quarto_escuro",
+   "texto": "Pronto. O alerta tinha razão. Sair não é opção. Você vai ter que aguentar aqui dentro.",
+   "destaques": {
+    "aqui": "vermelho",
+    "dentro.": "vermelho"
+   },
+   "relampago_em": 2.4,
+   "sons": [
+    {
+     "em": 2.4,
+     "fx": "trovao"
+    }
+   ],
+   "dur": 6.3
+  },
+  {
+   "tipo": "torneira",
+   "texto": "E a primeira coisa que acaba é a água.",
+   "modo": "pingando",
+   "recipientes": false,
+   "destaques": {
+    "água.": "azul"
+   },
+   "sons": [
+    {
+     "em": 0.4,
+     "fx": "gota"
+    },
+    {
+     "em": 1.2,
+     "fx": "gota"
+    },
+    {
+     "em": 2.0,
+     "fx": "gota"
+    }
+   ],
+   "dur": 3.7
+  },
+  {
+   "tipo": "torneira",
+   "texto": "Sem luz, a bomba do prédio para. Então você abre a torneira e enche o que tiver em casa: galão, balde, panelas.",
+   "modo": "enchendo",
+   "sons": [
+    {
+     "em": 0.2,
+     "fx": "agua"
+    },
+    {
+     "em": 2.6,
+     "fx": "agua"
+    }
+   ],
+   "dur": 8.5
+  },
+  {
+   "tipo": "torneira",
+   "texto": "Uns 35 litros. Só para beber, dá umas duas semanas.",
+   "fala": "Uns trinta e cinco litros. Só para beber, dá umas duas semanas.",
+   "modo": "enchendo",
+   "litros": 35,
+   "legenda_extra": "≈ 2 semanas de água pra beber",
+   "destaques": {
+    "35": "azul",
+    "litros.": "azul"
+   },
+   "dur": 4.1
+  },
+  {
+   "tipo": "torneira",
+   "texto": "Mas, às 4h30, a torneira tosse e para.",
+   "fala": "Mas, às quatro e meia, a torneira tosse e para.",
+   "modo": "parando",
+   "para_em": 1.4,
+   "hora": "04:30",
+   "destaques": {
+    "para.": "vermelho"
+   },
+   "sons": [
+    {
+     "em": 1.4,
+     "fx": "tosse"
+    }
+   ],
+   "dur": 3.4
+  },
+  {
+   "tipo": "janela",
+   "texto": "Então a chuva vira estoque: panela no parapeito, balde na varanda.",
+   "parapeito": true,
+   "breu": true,
+   "dur": 4.5
+  },
+  {
+   "tipo": "celular_grupo",
+   "texto": "Mas o prédio descobriu a falta d’água ao mesmo tempo. O grupo explode:",
+   "hora_tela": "04:35",
+   "bateria": 52,
+   "mensagens": [
+    {
+     "de": "Sônia 801",
+     "texto": "ALGUÉM TEM ÁGUA??"
+    },
+    {
+     "de": "Paulo 404",
+     "texto": "Aqui secou"
+    },
+    {
+     "de": "Lu 1102",
+     "texto": "???"
+    }
+   ],
+   "destaques": {
+    "explode:": "vermelho"
+   },
+   "sons": [
+    {
+     "em": 0.3,
+     "fx": "pop"
+    },
+    {
+     "em": 0.9,
+     "fx": "pop"
+    },
+    {
+     "em": 1.5,
+     "fx": "pop"
+    }
+   ],
+   "dur": 5.2,
+   "hora": "04:35"
+  },
+  {
+   "tipo": "celular_grupo",
+   "texto": "Áudio chorando. “Acabou a água no sétimo.” “O porteiro não atende.” “Meu cunhado disse que é uma doença.”",
+   "hora_tela": "04:50",
+   "bateria": 44,
+   "mensagens": [
+    {
+     "de": "Lu 1102",
+     "audio": true,
+     "texto": "0:47"
+    },
+    {
+     "de": "Carla 702",
+     "texto": "Acabou a água no sétimo."
+    },
+    {
+     "de": "Marcos 302",
+     "texto": "O porteiro não atende."
+    },
+    {
+     "de": "Rafa 905",
+     "texto": "Meu cunhado disse que é uma doença."
+    }
+   ],
+   "destaques": {
+    "doença.”": "vermelho"
+   },
+   "sons": [
+    {
+     "em": 0.3,
+     "fx": "pop"
+    },
+    {
+     "em": 1.6,
+     "fx": "pop"
+    },
+    {
+     "em": 3.0,
+     "fx": "pop"
+    },
+    {
+     "em": 4.3,
+     "fx": "pop"
+    }
+   ],
+   "dur": 7.1,
+   "hora": "04:50"
+  },
+  {
+   "tipo": "celular_bateria",
+   "texto": "Então você passa uma hora lendo cada mensagem. Mas isso custa caro: bateria, 38%, e nenhuma tomada funcionando na cidade.",
+   "fala": "Então você passa uma hora lendo cada mensagem. Mas isso custa caro: bateria, trinta e oito por cento, e nenhuma tomada funcionando na cidade.",
+   "bateria": 38,
+   "hora_tela": "05:40",
+   "destaques": {
+    "38%,": "vermelho"
+   },
+   "dur": 7.8,
+   "hora": "05:40"
+  },
+  {
+   "tipo": "celular_bateria",
+   "texto": "Então: modo avião, brilho no mínimo, tela apagada.",
+   "bateria": 38,
+   "hora_tela": "05:41",
+   "aviao_em": 0.9,
+   "brilho_em": 1.8,
+   "apagar_em": 2.9,
+   "sons": [
+    {
+     "em": 0.9,
+     "fx": "clique"
+    },
+    {
+     "em": 1.8,
+     "fx": "clique"
+    },
+    {
+     "em": 2.9,
+     "fx": "clique"
+    }
+   ],
+   "dur": 3.4,
+   "hora": "05:41"
+  },
+  {
+   "tipo": "quarto_escuro",
+   "texto": "E, sem a tela, o apartamento fica em silêncio.",
+   "dur": 3.7
+  },
+  {
+   "tipo": "texto_tela",
+   "texto": "Por isso você escuta.",
+   "chuva": true,
+   "dur": 2.2
+  },
+  {
+   "tipo": "portao",
+   "texto": "Lá embaixo, o portão do prédio range. Uma vez. Depois, outra.",
+   "range_em": [
+    1.2,
+    2.6
+   ],
+   "destaques": {
+    "range.": "amarelo"
+   },
+   "sons": [
+    {
+     "em": 1.2,
+     "fx": "rangido"
+    },
+    {
+     "em": 2.6,
+     "fx": "rangido"
+    }
+   ],
+   "dur": 4.5
+  },
+  {
+   "tipo": "portao",
+   "texto": "O mesmo portão que ninguém abriu.",
+   "range_em": [
+    -2
+   ],
+   "destaques": {
+    "ninguém": "vermelho"
+   },
+   "zoom": [
+    1.04,
+    1.14
+   ],
+   "dur": 2.6
+  },
+  {
+   "tipo": "janela",
+   "texto": "Você vai até o janelão. Lá embaixo, só chuva e breu.",
+   "breu": true,
+   "dur": 4.5
+  },
+  {
+   "tipo": "janela",
+   "texto": "Mas aí vem o relâmpago.",
+   "breu": true,
+   "relampago_em": 1.2,
+   "multidao": "relampago",
+   "sons": [
+    {
+     "em": 1.2,
+     "fx": "trovao"
+    }
+   ],
+   "dur": 2.3
+  },
+  {
+   "tipo": "janela",
+   "texto": "Por um segundo, a avenida inteira aparece.",
+   "relampago_em": [
+    0.1,
+    1.4
+   ],
+   "multidao": "relampago",
+   "sons": [
+    {
+     "em": 0.1,
+     "fx": "trovao"
+    }
+   ],
+   "dur": 3.0
+  },
+  {
+   "tipo": "janela",
+   "texto": "Tem gente parada no meio da rua. Dezenas, na chuva.",
+   "multidao": "visivel",
+   "relampago_em": [
+    0.3
+   ],
+   "destaques": {
+    "dezenas,": "vermelho"
+   },
+   "zoom": [
+    1,
+    1.1
+   ],
+   "dur": 4.1
+  },
+  {
+   "tipo": "janela",
+   "texto": "Ninguém se mexe.",
+   "multidao": "perto",
+   "relampago_em": [
+    0.2
+   ],
+   "dur": 2.2
+  },
+  {
+   "tipo": "janela",
+   "texto": "Todos olhando para cima.",
+   "multidao": "perto",
+   "relampago_em": [
+    0.4
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ],
+   "destaques": {
+    "cima.": "vermelho"
+   },
+   "dur": 2.2
+  },
+  {
+   "tipo": "predio_noite",
+   "texto": "Para o nono andar.",
+   "luz": "apagada",
+   "andar_aceso": 9,
+   "marcar_andar": true,
+   "multidao": true,
+   "relampago_em": 0.3,
+   "zoom": [
+    1,
+    1.12
+   ],
+   "dur": 2.2
+  },
+  {
+   "tipo": "predio_noite",
+   "texto": "Para a única janela que, durante uma hora inteira, foi a única luz acesa da rua.",
+   "luz": "apagada",
+   "andar_aceso": 9,
+   "multidao": true,
+   "zoom": [
+    1.12,
+    1.3
+   ],
+   "destaques": {
+    "única": "vermelho",
+    "luz": "amarelo"
+   },
+   "sons": [
+    {
+     "em": 0,
+     "fx": "hit"
+    }
+   ],
+   "dur": 6.3
+  },
+  {
+   "tipo": "voto",
+   "fundo": "chuva",
+   "pergunta": "E AGORA?",
+   "opcoes": [
+    "ESCONDE",
+    "FOGE"
+   ],
+   "proximo": "Episódio 2 amanhã, às 20h",
+   "dur": 5.6,
+   "fala": "E agora? Comenta esconde ou foge.",
+   "sons": [
+    {
+     "em": 0,
+     "fx": "stinger"
+    }
+   ]
+  }
+ ]
+}

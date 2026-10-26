@@ -23,6 +23,13 @@ async function buildAudio(tl, { musica = .13 } = {}){
   const lfo = a.createOscillator(); lfo.frequency.value = .13;
   const lg = a.createGain(); lg.gain.value = 150; lfo.connect(lg); lg.connect(f.frequency); lfo.start(0); lfo.stop(total);
 
+  if (tl.chuva){ // chuva de fundo o episódio inteiro
+    const s = a.createBufferSource(); s.buffer = nb; s.loop = true;
+    const hp = a.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 500;
+    const lp = a.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 7000;
+    const g = a.createGain(); g.gain.setValueAtTime(.0001,0); g.gain.exponentialRampToValueAtTime(.06,.8); g.gain.setValueAtTime(.06,Math.max(1,total-1)); g.gain.exponentialRampToValueAtTime(.0001,total);
+    s.connect(hp); hp.connect(lp); lp.connect(g); g.connect(out); s.start(0); s.stop(total);
+  }
   const tone = (t0,type,f0,f1,dur,vol) => {
     const o = a.createOscillator(), g = a.createGain(); o.type = type;
     o.frequency.setValueAtTime(f0,t0); if (f1 !== f0) o.frequency.exponentialRampToValueAtTime(f1,t0+dur);
@@ -53,6 +60,21 @@ async function buildAudio(tl, { musica = .13 } = {}){
       g.gain.setValueAtTime(.0001,t); g.gain.exponentialRampToValueAtTime(.12,t+.6); g.gain.setValueAtTime(.12,t+3); g.gain.exponentialRampToValueAtTime(.0001,t+4.2);
       o.connect(fl); fl.connect(g); g.connect(out); o.start(t); lf.start(t); o.stop(t+4.3); lf.stop(t+4.3);
     },
+    trovao: t => { noise(t,.25,'highpass',2000,600,.5); const s = a.createBufferSource(); s.buffer = nb; s.loop = true;
+      const fl = a.createBiquadFilter(); fl.type = 'lowpass'; fl.frequency.setValueAtTime(900,t); fl.frequency.exponentialRampToValueAtTime(120,t+3.2);
+      const g = a.createGain(); g.gain.setValueAtTime(.0001,t); g.gain.exponentialRampToValueAtTime(1.1,t+.12); g.gain.exponentialRampToValueAtTime(.0001,t+3.6);
+      s.connect(fl); fl.connect(g); g.connect(out); s.start(t); s.stop(t+3.7); tone(t,'sine',55,30,2.4,.6); },
+    alerta: t => { for (let k=0;k<6;k++){ const tt = t + k*.42; tone(tt,'square',853,853,.36,.09); tone(tt,'square',960,960,.36,.09); } },
+    gota: t => tone(t,'sine',1500,520,.12,.25),
+    agua: t => noise(t,2.2,'bandpass',2500,1800,.22,.6),
+    tosse: t => { for (let k=0;k<5;k++){ noise(t+k*.17,.1,'bandpass',1600,900,.3,.8); tone(t+k*.17,'sine',90,50,.1,.35); } },
+    pop: t => { tone(t,'sine',880,1320,.09,.18); tone(t+.05,'sine',1320,1320,.08,.1); },
+    clique: t => { noise(t,.03,'highpass',3000,5000,.35); tone(t,'sine',1800,1800,.03,.1); },
+    rangido: t => { const o = a.createOscillator(), g = a.createGain(), lf = a.createOscillator(), lg = a.createGain(), fl = a.createBiquadFilter();
+      o.type = 'sawtooth'; o.frequency.setValueAtTime(180,t); o.frequency.linearRampToValueAtTime(320,t+.5); o.frequency.linearRampToValueAtTime(140,t+.95);
+      lf.frequency.value = 38; lg.gain.value = 40; lf.connect(lg); lg.connect(o.frequency); fl.type = 'bandpass'; fl.frequency.value = 900; fl.Q.value = 3;
+      g.gain.setValueAtTime(.0001,t); g.gain.exponentialRampToValueAtTime(.35,t+.08); g.gain.setValueAtTime(.35,t+.8); g.gain.exponentialRampToValueAtTime(.0001,t+1);
+      o.connect(fl); fl.connect(g); g.connect(out); o.start(t); lf.start(t); o.stop(t+1.05); lf.stop(t+1.05); },
     heart: t => { tone(t,'sine',58,40,.16,.9); tone(t+.17,'sine',52,38,.14,.6); },
     stinger: t => {
       FX.hit(t);
@@ -81,4 +103,4 @@ function toWav(samples, sr){
   return b;
 }
 
-module.exports = { buildAudio, FX_LIST: ['whoosh','hit','clunk','keys','steps','count','ring','pickup','star','siren','heart','stinger'] };
+module.exports = { buildAudio, FX_LIST: ['whoosh','hit','clunk','keys','steps','count','ring','pickup','star','siren','heart','stinger','trovao','alerta','gota','agua','tosse','pop','clique','rangido'] };

@@ -478,7 +478,7 @@ const KIT = {
     policeWash(t,false);
   },
   voto(c,lt,p,t){
-    garage(t);
+    if (c.fundo === 'chuva') NOITE.KIT.janela({ multidao:'perto', relampago_em:[.05, 2.6] }, lt, p, t); else garage(t);
     ctx.fillStyle = 'rgba(5,6,9,.78)'; ctx.fillRect(0,0,W,H);
     ctx.textAlign='center'; ctx.textBaseline='alphabetic'; ctx.lineJoin='round';
     const pop = d => clamp(eob(clamp((lt-d)/.45)),0,1.2);
@@ -513,6 +513,9 @@ const KIT = {
   }
 };
 
+const NOITE = require('./kit-noite')({ W, H, C, F, clamp, lerp, eo, eob, rr, shade });
+Object.assign(KIT, NOITE.KIT);
+
 /* ---------- LINHA DO TEMPO ---------- */
 // vozDur: { indiceCena: segundos } quando a cena tem narração
 function prepare(ep, vozDur = {}){
@@ -527,7 +530,8 @@ function prepare(ep, vozDur = {}){
     c.m0 = pm; c.m1 = c.dinheiro ?? pm; pm = c.m1;
     c.s0 = ps; c.s1 = clamp(c.estrelas ?? ps, 0, 5); ps = c.s1;
   });
-  return { titulo: ep.titulo || 'NOVELINHA', cenas, total: acc };
+  let hora = null; cenas.forEach(c => { if (c.hora) hora = c.hora; c.hora_atual = hora; });
+  return { titulo: ep.titulo || 'NOVELINHA', cenas, total: acc, placar: ep.placar !== false, chuva: !!ep.chuva };
 }
 const sceneAt = (tl,T) => { const i = tl.cenas.findIndex(s => T < s.start + s.dur); return i < 0 ? tl.cenas.length-1 : i; };
 function moneyNow(tl,T){
@@ -550,6 +554,14 @@ function starPath(x,y,r){
   ctx.closePath();
 }
 function hud(tl,T){
+  if (!tl.placar){
+    const s = tl.cenas[sceneAt(tl,T)];
+    ctx.save(); ctx.textBaseline='alphabetic'; ctx.font = `46px ${F.hud}`; ctx.textAlign='center'; ctx.fillStyle = 'rgba(255,255,255,.78)';
+    ctx.fillText(String(tl.titulo).toUpperCase(),540,205);
+    if (s.hora_atual){ ctx.font = `84px ${F.hud}`; ctx.lineJoin='round'; ctx.lineWidth = 12; ctx.strokeStyle = '#000'; ctx.fillStyle = C.alert;
+      ctx.strokeText(s.hora_atual,540,320); ctx.fillText(s.hora_atual,540,320); }
+    ctx.restore(); return;
+  }
   const m = moneyNow(tl,T), st = starsNow(tl,T);
   ctx.save(); ctx.textBaseline='alphabetic'; ctx.lineJoin='round';
   ctx.font = `46px ${F.hud}`; ctx.textAlign='center'; ctx.fillStyle = 'rgba(255,255,255,.78)';
@@ -568,7 +580,7 @@ function hud(tl,T){
   ctx.restore();
 }
 function captions(s,lt){
-  if (!s.texto || s.tipo === 'voto') return;
+  if (!s.texto || s.tipo === 'voto' || s.tipo === 'texto_tela') return;
   const words = String(s.texto).split(/\s+/).filter(Boolean);
   const revealDur = s.voz_dur ? s.voz_dur*.85 : Math.min(s.dur*.5, words.length*.19);
   ctx.save(); ctx.font = `56px ${F.cap}`; ctx.textBaseline='alphabetic'; ctx.lineJoin='round'; ctx.textAlign='left';
@@ -649,6 +661,7 @@ function renderFrame(context, tl, T){
   if (s.humor === 'assustado') sh += 5;
   const sx = sh ? Math.sin(T*90)*sh : 0, sy = sh ? Math.cos(T*77)*sh : 0;
   ctx.translate(W/2+sx, H*.55+sy); ctx.scale(z,z); ctx.translate(-W/2, -H*.55);
+  NOITE.setCtx(ctx);
   KIT[s.tipo](s,lt,p,T,T,tl);
   ctx.restore();
   vignette();
